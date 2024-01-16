@@ -1,0 +1,426 @@
+<html>
+    <!--
+        P A R A B O L A S  A N D  H Y P E R B O L A S
+        I N  F I N I T E  F I E L D S
+
+        Bachelor´s Thesis
+        Filename: hyperbolas.html
+        Author: Lukas Patrnciak
+        Contact: xpatrnciak@stuba.sk
+    -->
+    
+    <head>
+        <link rel='stylesheet' href='layout/styles.css' type='text/css'>
+        <link rel="apple-touch-icon" sizes="57x57" href="layout/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="layout/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="layout/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="layout/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="layout/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="layout/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="layout/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="layout/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="layout/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="layout/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="layout/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="layout/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="layout/favicons/favicon-16x16.png">
+        <link rel="manifest" href="layout/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="layout/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name='viweport' content='width=device-width,initial-scale=1'>
+        <meta name='desctiption' content='Lukáš Patrnčiak'>
+        <meta name='keywords' content='lukaspatrnciak, bakalarskapraca, paraboly, hyperboly, konecne polia, kongruencia, kvadraticke kongruencie, kuzelosecky, Legendrov symbol'>
+        <meta charset='UTF-8'>
+        <script type="text/javascript" src='libraries/Helpers.js'></script>
+        <script type="text/javascript" src='libraries/Chart.js'></script>
+        <script type="text/javascript" src='libraries/Conics.js'></script>
+	<script type="text/x-mathjax-config">
+  		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript" src='libraries/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local'></script>
+	<title>Paraboly a hyperboly nad konečnými poľami :: Hyperbola</title>
+    </head>
+
+    <script>
+        var xArray = [];
+        var yArray = [];
+
+        var p = 13;
+        var u = 1;
+        var a = 1;
+        var b = 1;
+        var m = 0;
+        var n = 0;
+    </script>
+
+    <body onload='printHyperbola(xArray, yArray, p, a, b, m, n, u);'>
+        <!-- Navigation Bar -->
+        <div class='navigation' id='navigationId'>
+            <div class='container'>
+                <a href='index.html' class='leftMenu'>
+                    Paraboly a hyperboly nad konečnými poľami
+                </a>
+                <ul class='navigationMenu'>
+                    <li><a href='index.html'>Úvod</a></li>
+                    <li><a href='abstract.html'>Abstrakt</a></li>
+                    <li><a href='conics.html'>Kužeľosečky</a></li>
+                    <li><a href='parabolas.html'>Paraboly</a></li>
+                    <li><a href='#'>Hyperboly</a></li>
+                </ul>
+                <a href='javascript:void(0);' class='responsiveMenu' onclick='responsiveMenu(this);'>
+                    <div class="menuBarFirst"></div>
+                    <div class="menuBarSecond"></div>
+                    <div class="menuBarThirth"></div>
+                </a>
+            </div>
+        </div>
+        <!-- Page Header -->
+        <div class='pageHeader'>
+            <div class='container'>
+                <div class='pageHeaderContent'>
+                    <div class='pageHeaderContentC'>
+                        <h1>Výpočet a zobrazenie <span class="markup">bodov hyperboly</span> na základe <span class="markup">rovnice hyperboly</span> nad <span class="markup">konečnými poľami</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class='content'>
+            <div class='container'>
+                <div class='section'>
+                    <h1>Hyperboly v konečných poliach</h1>
+                    <p><b>Hyperbola</b> je druh kužeľosečky. Je to rez kužeľovej plochy rovinou, ktorá je nerovnobežná s osou kužeľovej plochy a uhol ktorý zviera s osou je menší ako uhol priamky, ktorej rotáciou kužeľová plocha vznikla, zvieraný s osou kužeľovej plochy.</p>
+                    <p>Aby bolo možné vypočítať body hyperboly v konečnom poli $F_p$ a zároveň, aby ju bolo možné zobraziť, je potrebné, aby bolo  $p$ (veľkosť konečného poľa) prvočíslo.</p>
+                    <p>Zároveň platí, že zvolený $u$ parameter, súradnice stredu hyperboly a polosi hyperboly $a$ a $b$ sú prvky v ľubovoľnom konečnom poli $F_p$</p>
+                    <p style='margin-top: 20px; font-weight: bold;'>Pre zobrazenie kužeľosečiek je potrebné, aby počet prvkov konečného poľa bol väčší ako 2, čiže <span class='markup'>$p > 2$.</span></p>
+                </div>
+                <div class='section'>
+                    <h1>Výpočet bodov</h1>
+                    <div class='hyperbola'>
+                        <p><b>Rovnice hyperboly:</b> 
+                            <br>
+                            <label for='yRadio'>
+                                <input type='radio' id='yRadio' name='hyperbolaEquation' value='0'>
+                                $\frac{(y - n)^2}{a^2} - \frac{(x - m)^2}{b^2} = u$ <span class='markup'>$(mod$ $p)$<span>
+                            </label>
+                            <br>
+                            <label for='xRadio'>
+                                <input type='radio' id='xRadio' name='hyperbolaEquation' value='1' checked>
+                                $\frac{(x - m)^2}{a^2} - \frac{(y - n)^2}{b^2} = u$ <span class='markup'>$(mod$ $p)$<span>      
+                            </label>
+                        </p>
+                        <br>
+						<p><b>Interval zobrazovania a výpočtu bodov:</b>
+                            <br>
+							<label for='negativeInterval'>
+								<input type='radio' id='negativeInterval' name='interval' value='0' checked>
+								$<-\frac{p-1}{2}, \frac{p-1}{2}>$
+							</label>
+                            <br>
+							<label for='positiveInterval'>
+								<input type='radio' id='positiveInterval' name='interval' value='1'>
+								$<0, p-1>$
+							</label>
+                        </p>
+
+                        <br>                 
+                        <label for='aVariable'><b>a: </b>
+                            <input id='aVariable' type='number' value='1'>
+                        </label>
+
+                        <label for='bVariable'><b>b: </b>
+                            <input id='bVariable' type='number' value='1'>
+                        </label>
+
+                        <label for='mVariable'><b>m: </b>
+                            <input id='mVariable' type='number' value='0'>
+                        </label>
+
+                        <label for='nVariable'><b>n: </b>
+                            <input id='nVariable' type='number' value='0'>
+                        </label>
+
+                        <label for='uVariable'><b>u: </b>
+                            <input id='uVariable' type='number' value='1'>  
+                        </label>
+
+                        <label for='pVariable'><b>p: </b>
+                            <input id='pVariable' type='number' value='13'> 
+                        </label>
+
+                        <script>
+                            function printHyperbola(xArray, yArray, p, a, b, m, n, u) {
+                                var axis = 1;
+                                var interval = 0;
+
+                                var xRadio = 0;
+                                var yRadio = 0;
+
+                                var negativeInterval = 0;
+								var positiveInterval = 0;
+
+                                var hyperbolaPlots = "";
+                                var hyperbolaCount = 0;
+
+                                p = document.getElementById("pVariable").value;
+                                u = document.getElementById("uVariable").value;
+                                a = document.getElementById("aVariable").value;
+                                b = document.getElementById("bVariable").value;
+                                m = document.getElementById("mVariable").value;
+                                n = document.getElementById("nVariable").value;
+
+                                xRadio = document.getElementById("xRadio");
+                                yRadio = document.getElementById("yRadio");
+
+                                negativeInterval = document.getElementById("negativeInterval");
+                                positiveInterval = document.getElementById("positiveInterval");
+
+                                p = parseInt(p);
+                                u = parseInt(u);
+                                a = parseInt(a);
+                                b = parseInt(b);
+                                m = parseInt(m);
+                                n = parseInt(n);
+
+                                if(xRadio.checked) {
+                                    axis = 1;
+
+                                    if(mod(a, p) == 1 && mod(b, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$x^2 - y^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(a, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$x^2 - \\frac{y^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(b, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{x^2}{" + mod(a, p) + "^2} - y^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";    
+                                    } else if(mod(a, p) == 1 && mod(b, p) == 1 && mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$x^2 - (y + " + mod(-n, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(a, p) == 1 && mod(b, p) == 1 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(x + " + mod(-m, p) + ")^2 - y^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(a, p) == 1 && mod(b, p) == 1) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(x + " + mod(-m, p) + ")^2 - (y + " + mod(-n, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(a, p) == 1 && mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$x^2 - \\frac{(y + " + mod(-n, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(a, p) == 1 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(x + " + mod(-m, p) + ")^2 - \\frac{y^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(b, p) == 1 && mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{x^2}{" + mod(a, p) + "^2} - (y + " + mod(-n, p) + ")^2= " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(b, p) == 1 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(x + " + mod(-m, p) + ")^2}{" + mod(a, p) + "^2} - y^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{x^2}{" + mod(a, p) + "^2} - \\frac{y^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{x^2}{" + mod(a, p) + "^2} - \\frac{(y + " + mod(-n, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(x + " + mod(-m, p) + ")^2}{" + mod(a, p) + "^2} - \\frac{y^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(a, p) == 1) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(x + " + mod(-m, p) + ")^2 - \\frac{(y + " + mod(-n, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else if(mod(b, p) == 1) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(x + " + mod(-m, p) + ")^2}{" + mod(a, p) + "^2} - (y + " + mod(-n, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    } else {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(x + " + mod(-m, p) + ")^2}{" + mod(a, p) + "^2} - \\frac{(y + " + mod(-n, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                    }  
+                                } 
+
+                                if(yRadio.checked) {
+                                    axis = 0;
+                                    
+                                    if(mod(a, p) == 1 && mod(b, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$y^2 - x^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";  
+                                    } else if(mod(a, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$y^2 - \\frac{x^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>"; 
+                                    } else if(mod(b, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(y^2}{" + mod(a, p) + "^2} - x^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>"; 
+                                    } else if(mod(a, p) == 1 && mod(b, p) == 1 && mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(y + " + mod(-n, p) + ")^2 - x^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>"; 
+                                    } else if(mod(a, p) == 1 && mod(b, p) == 1 && mod(n, p) == 0) {    
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$y^2 - (x + " + mod(-m, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(a, p) == 1 && mod(b, p) == 1) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(y + " + mod(-n, p) + ")^2 - (x + " + mod(-m, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(a, p) == 1 && mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(y + " + mod(-n, p) + ")^2 - \\frac{x^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(a, p) == 1 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$y^2 - \\frac{(x + " + mod(-m, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(b, p) == 1 && mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(y + " + mod(-n, p) + ")^2}{" + mod(a, p) + "^2} - x^2= " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(b, p) == 1 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{y^2}{" + mod(a, p) + "^2} - (x + " + mod(-m, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(m, p) == 0 && mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{y^2}{" + mod(a, p) + "^2} - \\frac{x^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(m, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(y + " + mod(-n, p) + ")^2}{" + mod(a, p) + "^2} - \\frac{x^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(n, p) == 0) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{y^2}{" + mod(a, p) + "^2} - \\frac{(x + " + mod(-m, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(a, p) == 1) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$(y + " + mod(-n, p) + ")^2 - \\frac{(x + " + mod(-m, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else if(mod(b, p) == 1) {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(y + " + mod(-n, p) + ")^2}{" + mod(a, p) + "^2} - (x + " + mod(-m, p) + ")^2 = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                    } else {
+                                        document.getElementById("hyperbolaOutputEquation").innerHTML = "$\\frac{(y + " + mod(-n, p) + ")^2}{" + mod(a, p) + "^2} - \\frac{(x + " + mod(-m, p) + ")^2}{" + mod(b, p) + "^2} = " + mod(u, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";                
+                                    }
+                                }
+
+                                if(negativeInterval.checked) {
+                                    interval = 0;     
+                                }
+
+                                if(positiveInterval.checked) {
+                                    interval = 1;   
+                                }
+
+                                hyperbolaCount = hyperbola(axis, interval, xArray, yArray, p, u, a, b, m, n); 
+
+                                if(hyperbolaCount < 0) {
+                                    var eMessageBox = document.getElementsByClassName("errorMessage");
+                                    var chartBox = document.getElementsByClassName("chart");
+
+                                    if(hyperbolaCount == -1) {
+                                        document.getElementById("outputMessage").innerHTML = "Počet prvkov konečného poľa $p > 2$ musí byť prvočíslo";
+                                    }
+                                    
+                                    if(hyperbolaCount == -2) {
+                                        document.getElementById("outputMessage").innerHTML = "Veľkosť polosi $a$ a $b$ musí byť nenulový prvok z konečného poľa";
+                                    }
+
+                                    document.getElementById("outputMessage").style.display = 'block';
+
+                                    document.getElementById("hyperbolaOutputEquation").style.display = 'none';
+                                    document.getElementById("hyperbolaPlotsOutputText").style.display = 'none';
+                                    document.getElementById("hyperbolaPlotsOutput").style.display = 'none';
+                                    document.getElementById("hyperbolaPlotsOutputAccept").style.display = 'none';
+                                    document.getElementById("hyperbolaPlotsOutputAll").style.display = 'none';
+                                    document.getElementById("printoutMessage").style.display = 'none';
+                                    document.getElementById("plotsFiniteField").style.display = 'none';
+                                    document.getElementById("printEquationMessage").style.display = 'none';
+
+                                    for (var i = 0; i < eMessageBox.length; i++) {
+                                        eMessageBox[i].style.display = 'block';
+                                    }
+
+                                    for (var i = 0; i < chartBox.length; i++) {
+                                        chartBox[i].style.display = 'none';
+                                    }     
+                            
+                                } else {
+                                    var eMessageBox = document.getElementsByClassName("errorMessage");
+                                    var chartBox = document.getElementsByClassName("chart");
+
+                                    document.getElementById("outputMessage").style.display = 'none';
+
+                                    document.getElementById("hyperbolaOutputEquation").style.display = 'block';
+                                    document.getElementById("hyperbolaPlotsOutputText").style.display = 'block';
+                                    document.getElementById("hyperbolaPlotsOutput").style.display = 'block';
+                                    document.getElementById("hyperbolaPlotsOutputAccept").style.display = 'block';
+                                    document.getElementById("hyperbolaPlotsOutputAll").style.display = 'block';
+                                    document.getElementById("printoutMessage").style.display = 'block';
+                                    document.getElementById("plotsFiniteField").style.display = 'block';
+                                    document.getElementById("printEquationMessage").style.display = 'block';
+
+                                    for (var i = 0; i < eMessageBox.length; i++) {
+                                        eMessageBox[i].style.display = 'none';
+                                    }
+
+                                    for (var i = 0; i < chartBox.length; i++) {
+                                        chartBox[i].style.display = 'block';
+                                    }
+                                }
+
+                                updateChart(hyperbolaChart, xArray, yArray, interval, p, hyperbolaCount);
+
+                                for (var i = 0; i < hyperbolaCount; i++) {
+                                    hyperbolaPlots = hyperbolaPlots + "(" + xArray[i]+ ", " + yArray[i] + ")<br>";
+                                }
+
+                                document.getElementById("hyperbolaPlotsOutputText").innerHTML = "Body hyperboly (x, y) v konečnom poli $F_{" + p + "}$:";
+                                document.getElementById("hyperbolaPlotsOutput").innerHTML = hyperbolaPlots;
+				                document.getElementById("plotsFiniteField").innerHTML = "Počet prvkov konečného poľa $F_{" + p + "}$: " + p;
+                                document.getElementById("hyperbolaPlotsOutputAccept").innerHTML = "Počet bodov hyperboly v konečnom poli $F_{" + p + "}$: " + hyperbolaCount;
+                                document.getElementById("hyperbolaPlotsOutputAll").innerHTML = "Počet prvkov $(x, y)$ v množine $F^2_{" + p + "}$: " + p*p;
+
+                                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                            }
+                        </script>
+
+                        <button name='classicButton' type='button' onclick='printHyperbola(xArray, yArray, p, a, b, m, n, u);'>Zobraziť</button>
+                    </div>
+                    
+		            <p id='printEquationMessage' style='padding-top: 35px; font-weight: bold;'>Rovnica hyperboly v konečnom poli:</p>
+                    <p id='hyperbolaOutputEquation' style='font-weight: bold;'></p>
+
+		            <h1 id='printoutMessage' style='padding-top: 35px;'>Výpis bodov</h1>
+                    <p id='hyperbolaPlotsOutputText' style='font-weight: bold;'></p>
+                    <p id='hyperbolaPlotsOutput'></p>
+                    <p id='hyperbolaPlotsOutputAccept' style='padding-top: 35px; font-weight: bold;'></p>
+		            <p id='plotsFiniteField' style='font-weight: bold;'></p>
+                    <p id='hyperbolaPlotsOutputAll' style='font-weight: bold;'></p>
+
+                    <div class='errorMessage'>
+                        <p id='outputMessage'></p>
+                    </div>
+                </div>
+                <div class='section'>
+                    <div class='chart'>
+                        <h1>Grafické zobrazenie</h1>
+                        <canvas id='hyperbolaChart'>
+                            Váš prehliadač nepodporuje HTML tag canvas.
+                        </canvas>
+                        <script>
+                            var c = document.getElementById("hyperbolaChart");
+                            c.width = 700;
+                            c.height = 500;
+
+                            var ctx = c.getContext("2d");
+                            var xyValues = [];
+
+                            var hyperbolaChart = new Chart(ctx, {
+                                type: "scatter",
+                                data: {
+                                    datasets: [{
+                                        pointRadius: 4,
+                                        pointBackgroundColor: "rgb(255, 0, 0)",
+                                        data: xyValues
+                                    }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    responsive: true,
+                                    scales: {
+                                        xAxes: [{
+                                            ticks: {
+                                                min: -((p - 1) / 2),
+                                                stepSize: 1,
+                                                max: (p - 1) / 2
+                                            },
+                                            type: 'linear',
+                                            position: 'bottom',
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                min: -((p - 1) / 2),
+                                                stepSize: 1,
+                                                max: (p - 1) / 2
+                                            },
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <!-- Footer -->
+        <div class='footer'>
+            <div class='container'>
+                <div class='footerContentLeft'>
+                    <h1>Vytvoril</h1>
+                    <a href="https://is.stuba.sk/auth/lide/clovek.pl?id=92320;">Lukáš Patrnčiak</a>
+                </div>
+                <div class='footerContentRight'>
+                    <h1>Bakalárska práca</h1>
+                    <a href="abstract.html">Paraboly a hyperboly nad konečnými poľami</a>
+                </div>
+            </div>    
+        </div>
+    </body>
+</html>

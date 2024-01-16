@@ -1,0 +1,918 @@
+
+
+<html>
+    <!--
+        P A R A B O L A S  A N D  H Y P E R B O L A S
+        I N  F I N I T E  F I E L D S
+        
+        Bachelor´s Thesis
+        Filename: ConicSections.html
+        Author: Lukas Patrnciak
+        Contact: xpatrnciak@stuba.sk
+    -->
+    
+    <head>
+        <link rel='stylesheet' href='layout/styles.css' type='text/css'>
+        <link rel="apple-touch-icon" sizes="57x57" href="layout/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="layout/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="layout/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="layout/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="layout/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="layout/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="layout/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="layout/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="layout/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="layout/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="layout/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="layout/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="layout/favicons/favicon-16x16.png">
+        <link rel="manifest" href="layout/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="layout/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name='viweport' content='width=device-width,initial-scale=1'>
+        <meta name='desctiption' content='Lukáš Patrnčiak'>
+        <meta name='keywords' content='lukaspatrnciak, bakalarskapraca, paraboly, hyperboly, konecne polia, kongruencia, kvadraticke kongruencie, kuzelosecky, Legendrov symbol'>
+        <meta charset='UTF-8'>
+        <script type="text/javascript" src='libraries/Helpers.js'></script>
+        <script type="text/javascript" src='libraries/Chart.js'></script>
+        <script type="text/javascript" src='libraries/Conics.js'></script>
+	<script type="text/x-mathjax-config">
+  		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+	<script type="text/javascript" src='libraries/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML,local/local'></script>
+        <title>Paraboly a hyperboly nad konečnými poľami :: Všeobecná rovnica</title>
+    </head>
+
+    <script>
+        var xArray = [];
+        var yArray = [];
+        var params = [];
+
+        var p = 13;
+        var a = 0;
+        var b = 1;
+        var c = -6;
+        var d = 4;
+        var e = 3;
+    </script>
+
+    <body onload='printConic(params, xArray, yArray, p, a, b, c, d, e);'>
+        <!-- Navigation Bar -->
+        <div class='navigation' id='navigationId'>
+            <div class='container'>
+                <a href='index.html' class='leftMenu'>
+                    Paraboly a hyperboly nad konečnými poľami
+                </a>
+                <ul class='navigationMenu'>
+                    <li><a href='index.html'>Úvod</a></li>
+                    <li><a href='abstract.html'>Abstrakt</a></li>
+                    <li><a href='#'>Kužeľosečky</a></li>
+                    <li><a href='parabolas.html'>Paraboly</a></li>
+                    <li><a href='hyperbolas.html'>Hyperboly</a></li>
+                </ul>
+                <a href='javascript:void(0);' class='responsiveMenu' onclick='responsiveMenu(this);'>
+                    <div class="menuBarFirst"></div>
+                    <div class="menuBarSecond"></div>
+                    <div class="menuBarThirth"></div>
+                </a>
+            </div>
+        </div>
+        <!-- Page Header -->
+        <div class='pageHeader'>
+            <div class='container'>
+                <div class='pageHeaderContent'>
+                    <div class='pageHeaderContentC'>
+                        <h1>Výpočet a zobrazenie <span class="markup">bodov kužeľosečiek</span> na základe <span class="markup">všeobecnej rovnice</span> nad <span class="markup">konečnými poľami</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class='content'>
+            <div class='container'>
+                <div class='section'>
+                    <h1>Kužeľosečky v konečných poliach</h1>
+                    <p>Ako je už z názvu možné predpokladať, kužeľosečky sú rovinné krivky, ktoré je možné získať
+                        prienikom kužeľovej plochy s rovinou $\rho$. Kužeľovú plochu získame rotáciou rôznobežky
+                        $p$ okolo rôznobežky $o$ v trojrozmernom priestore, pričom platí, že tieto priamky majú
+                        priesečník v bode $P$ a zvierajú uhol $\alpha \in (0, \frac{\pi}{2})$.</p>
+                    <p>Kužeľosečky, ktoré vzniknú prienikom kužeľovej plochy s rovinou, je možné rozdeliť na dva
+                        typy:
+                    <ul>
+                        <li><b>singulárne kužeľosečky</b> - vznikajú prienikom kužeľovej plochy rovinou, ktorá
+                            prechádza jej vrcholom. Medzi tento typ kužeľosečiek patria rovnobežky, rôznobežky
+                            a bod</li>
+                        <li><b>regulárne kužeľosečky</b>  - vznikajú prienikom kužeľovej plochy rovinou, ktorá
+                            neprechádza jej vrcholom. Medzi tento typ kužeľosečiek patrí kružnica, elipsa, parabola
+                            a hyperbola.</li>
+                    </ul>
+                    <p>
+                        Nech $\beta \in [0, \frac{\pi}{2}]$ je uhol, ktorý zviera rovina $\rho$ s priamkou $o$ a rovina $\rho$ neprechádza vrcholom kužeľovej plochy, potom:</p>
+                    </p>
+                    <ul>
+                        <li>ak $\beta = \frac{\pi}{2}$, prienikom je <b>kružnica</b>.</li>
+                        <li>ak $\beta = (\alpha, \frac{\pi}{2})$, prienikom <b>je elipsa</b>.</li>
+                        <li>ak $\beta = \alpha$, prienikom je <b><span class='markup'><a href='parabolas.html'>parabola</a></span></b>.</li>
+                        <li>ak $\beta \in [0, \alpha)$, prienikom je <b><span class='markup'><a href='hyperbolas.html'>hyperbola</a></span></b>.</li>
+                    </ul>
+                    <p>Kužeľosečky sú definované všeobecnou rovnicou, pomocou ktorej a za určitých podmienok dokážeme odvodiť stredové, prípadne vrcholové rovnice pre kužeľosečky.</p>
+                    <p style='margin-top: 20px; font-weight: bold;'>Pre zobrazenie kužeľosečiek je potrebné, aby počet prvkov konečného poľa bol väčší ako 2, čiže <span class='markup'>$p > 2$.</span></p>
+		            <p class='markup' style='margin-top: 30px;'>
+                        <b>Legendrov symbol</b> $(\frac{a}{p})$:</p>
+		            <p>
+			            $\begin{equation*}
+				        (\frac{a}{p}) = 
+    				        \begin{cases}
+       					        -1 & \text{ak $a$ je kvadratický nezvyšok}, \\
+        				        \hspace{2mm} \ 0 & \text{ak $a \equiv 0$ $(mod$ $p)$}, \\
+        				        \hspace{3.5mm} 1 & \text{ak $a$ je kvadratický zvyšok}.
+    				        \end{cases}
+			            \end{equation*}$
+		            </p>
+                </div>
+                <div class='section'>
+                    <h1>Výpočet bodov</h1>
+                    <div class='generalEquation'>
+                        <p><b>Všeobecná rovnica pre vyjadrenie kužeľosečiek:</b> 
+                            <br>
+                            $Ax^2 + By^2 + Cx + Dy + E = 0$ <span class='markup'>$(mod$ $p)$<span>
+                            <br>
+                        </p>
+
+                        <br>
+						<p><b>Interval zobrazovania a výpočtu bodov:</b>
+                            <br>
+							<label for='negativeInterval'>
+								<input type='radio' id='negativeInterval' name='interval' value='0' checked>
+								$<-\frac{p-1}{2}, \frac{p-1}{2}>$
+							</label>
+                            <br>
+							<label for='positiveInterval'>
+								<input type='radio' id='positiveInterval' name='interval' value='1'>
+								$<0, p-1>$
+							</label>
+                        </p>
+
+                        <br>
+                        <label for='AVariable'><b>A: </b>
+                            <input id='AVariable' type='number' value='0'>
+                        </label>
+
+                        <label for='BVariable'><b>B: </b>
+                            <input id='BVariable' type='number' value='1'>
+                        </label>
+
+                        <label for='CVariable'><b>C: </b>
+                            <input id='CVariable' type='number' value='-6'>
+                        </label>
+
+                        <label for='DVariable'><b>D: </b>
+                            <input id='DVariable' type='number' value='4'> 
+                        </label>
+
+                        <label for='EVariable'><b>E: </b>
+                            <input id='EVariable' type='number' value='3'> 
+                        </label>
+
+                        <label for='pVariable'><b>p: </b>
+                            <input id='pVariable' type='number' value='13' min='3'> 
+                        </label>
+
+                        <script>
+                            function printConic(params, xArray, yArray, p, a, b, c, d, e) {
+                                var plots = "";
+                                var interval = 0;
+
+                                var negativeInterval = 0;
+								var positiveInterval = 0;
+
+                                p = document.getElementById("pVariable").value;
+                                a = document.getElementById("AVariable").value;
+                                b = document.getElementById("BVariable").value;
+                                c = document.getElementById("CVariable").value;
+                                d = document.getElementById("DVariable").value;
+                                e = document.getElementById("EVariable").value;
+
+                                p = parseInt(p);
+                                a = parseInt(a);
+                                b = parseInt(b);
+                                c = parseInt(c);
+                                d = parseInt(d);
+                                e = parseInt(e);
+
+                                negativeInterval = document.getElementById("negativeInterval");
+                                positiveInterval = document.getElementById("positiveInterval");
+
+                                if(negativeInterval.checked) {
+                                    interval = 0;     
+                                }
+
+                                if(positiveInterval.checked) {
+                                    interval = 1;   
+                                }
+
+                                var conicSection = [];
+                                conicSection = conics(params, interval, xArray, yArray, p, a, b, c, d, e);
+
+                                if(conicSection[0] == -1) {
+                                    var eMessageBox = document.getElementsByClassName("errorMessage");
+
+                                    document.getElementById("outputMessage").innerHTML = "Počet prvkov konečného poľa $p > 2$ musí byť prvočíslo";
+                                    document.getElementById("outputMessage").style.display = 'block';
+
+                                    document.getElementById("plotsFiniteField").style.display = 'none';
+                                    document.getElementById("plotsFiniteField2").style.display = 'none';
+                                    document.getElementById("plotsConicSectionCount").style.display = 'none';
+                                    document.getElementById("generalGraph").style.display = 'none';
+                                    document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'none';
+                                    document.getElementById("generalEquationOutputText").style.display = 'none';
+                                    document.getElementById("generalEquationOutputTextEquation").style.display = 'none';
+                                    document.getElementById("plotsConicSection").style.display = 'none';
+
+				                    document.getElementById("conicSectionGeneralForm").style.display = 'none';
+				                    document.getElementById("conicSectionEquation").style.display = 'none';
+                                    document.getElementById("printoutEquation").style.display = 'none';
+
+                                    for (var i = 0; i < eMessageBox.length; i++) {
+                                        eMessageBox[i].style.display = 'block';
+                                    }
+
+                                } else if(conicSection[0] == -2) {                                    
+                                    var eMessageBox = document.getElementsByClassName("errorMessage");
+
+				                    if(conicSection[1] == -2){
+            				            a  = -1 * a;
+					                    var aTmp = mod(modInverse(b, p), p); 
+           				                var bTmp = mod(modInverse(a, p), p);
+
+                                    	document.getElementById("outputMessage").innerHTML = "Veľkosti polosi hyperboly $a^2$ a $b^2$ musia byť kvadratické zvyšky:<br>$a^2 = A^{-1} = $ " + aTmp + " $\\rightarrow$ $(\\frac{" + aTmp + "}{" + p + "})$ = " + legendreSymbol(aTmp, p) + "<br>$b^2 = B^{-1} = $ " + bTmp + " $\\rightarrow$ $(\\frac{" + bTmp + "}{" + p + "})$ = " + legendreSymbol(bTmp, p);
+
+                                    }
+				    
+				                    if(conicSection[1] == -1) {
+            				            b = -1 * b;
+					                    var aTmp = mod(modInverse(a, p), p); 
+           				                var bTmp = mod(modInverse(b, p), p);
+
+                                    	document.getElementById("outputMessage").innerHTML = "Veľkosti polosi hyperboly $a^2$ a $b^2$ musia byť kvadratické zvyšky:<br>$a^2 = A^{-1} = $ " + aTmp + " $\\rightarrow$ $(\\frac{" + aTmp + "}{" + p + "})$ = " + legendreSymbol(aTmp, p) + "<br>$b^2 = B^{-1} = $ " + bTmp + " $\\rightarrow$ $(\\frac{" + bTmp + "}{" + p + "})$ = " + legendreSymbol(bTmp, p);
+                                    }
+
+				                    document.getElementById("outputMessage").style.display = 'block';
+
+                                    document.getElementById("plotsFiniteField").style.display = 'none';
+                                    document.getElementById("plotsFiniteField2").style.display = 'none';
+                                    document.getElementById("plotsConicSectionCount").style.display = 'none';
+                                    document.getElementById("generalGraph").style.display = 'none';
+                                    document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'none';
+                                    document.getElementById("generalEquationOutputText").style.display = 'none';
+                                    document.getElementById("generalEquationOutputTextEquation").style.display = 'none';
+                                    document.getElementById("plotsConicSection").style.display = 'none';
+
+				                    document.getElementById("conicSectionGeneralForm").style.display = 'none';
+				                    document.getElementById("conicSectionEquation").style.display = 'none';
+                                    document.getElementById("printoutEquation").style.display = 'none';
+
+                                    for (var i = 0; i < eMessageBox.length; i++) {
+                                        eMessageBox[i].style.display = 'block';
+                                    }
+
+                                } else if(conicSection[0] == -3) {                                    
+                                    var eMessageBox = document.getElementsByClassName("errorMessage");
+                                    
+                                    var circleCondition = mod(c*c + d*d - 4*e, p);
+                                    var elipsaCondition = mod(b*(c*c) + a*(d*d) - 4*a*b*e, p);
+
+                                    if(mod(a, p) != 0 && mod(b, p) == 0 && mod(d, p) == 0) {
+					                    document.getElementById("outputMessage").innerHTML = "Výsledná rovnica nie je rovnicou regulárnych kužeľosečiek:<br>$A = " + mod(a, p) + " \\wedge B = " + mod(b, p) + " \\wedge D = " + mod(d, p) + "$";
+				                    
+                                    } else if(mod(a, p) == 0 && mod(b, p) != 0 && mod(c, p) == 0) {
+					                    document.getElementById("outputMessage").innerHTML = "Výsledná rovnica nie je rovnicou regulárnych kužeľosečiek:<br>$A = " + mod(a, p) + " \\wedge B = " + mod(b, p) + " \\wedge D = " + mod(d, p) + "$";
+                                    
+                                    } else if(a*b > 0 && mod(a, p) != 0 && mod(b, p) != 0 && mod(a, p) != mod(b, p) && elipsaCondition == 0) {
+                                        document.getElementById("outputMessage").innerHTML = "Výsledná rovnica nie je rovnicou regulárnych kužeľosečiek:<br>$A \\cdot B =" + mod(a*b, p) + " \\wedge A \\neq B \\wedge BC^2 + AD^2 - 4ABE = " + elipsaCondition + "$";
+                                    
+                                    } else if(mod(a, p) != 0 && mod(b, p) != 0 && mod(a, p) == mod(b, p) && circleCondition == 0) {
+                                        document.getElementById("outputMessage").innerHTML = "Výsledná rovnica nie je rovnicou regulárnych kužeľosečiek:<br>$A = B \\wedge A, B = " + mod(a, p) + "\\wedge C^2 + D^2 - 4E = " + circleCondition + "$";
+                                    
+                                    } else {
+                                        document.getElementById("outputMessage").innerHTML = "Výsledná rovnica nie je rovnicou regulárnych kužeľosečiek";
+                                    } 
+                                    
+				                    document.getElementById("outputMessage").style.display = 'block';
+
+                                    document.getElementById("plotsFiniteField").style.display = 'none';
+                                    document.getElementById("plotsFiniteField2").style.display = 'none';
+                                    document.getElementById("plotsConicSectionCount").style.display = 'none';
+                                    document.getElementById("generalGraph").style.display = 'none';
+                                    document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'none';
+                                    document.getElementById("generalEquationOutputText").style.display = 'none';
+                                    document.getElementById("generalEquationOutputTextEquation").style.display = 'none';
+                                    document.getElementById("plotsConicSection").style.display = 'none';
+
+				                    document.getElementById("conicSectionGeneralForm").style.display = 'none';
+				                    document.getElementById("conicSectionEquation").style.display = 'none';
+                                    document.getElementById("printoutEquation").style.display = 'none';
+
+                                    for (var i = 0; i < eMessageBox.length; i++) {
+                                        eMessageBox[i].style.display = 'block';
+                                    }
+
+                                } else {
+                                    var eMessageBox = document.getElementsByClassName("errorMessage");
+
+                                    document.getElementById("outputMessage").style.display = 'none';
+
+                                    document.getElementById("plotsFiniteField").style.display = 'block';
+                                    document.getElementById("plotsFiniteField2").style.display = 'block';
+                                    document.getElementById("plotsConicSectionCount").style.display = 'block';
+                                    document.getElementById("generalGraph").style.display = 'block';
+                                    document.getElementById("generalEquationOutputText").style.display = 'block';
+                                    document.getElementById("generalEquationOutputTextEquation").style.display = 'block';
+                                    document.getElementById("plotsConicSection").style.display = 'block';
+
+				                    document.getElementById("conicSectionGeneralForm").style.display = 'block';
+				                    document.getElementById("conicSectionEquation").style.display = 'block';
+                                    document.getElementById("printoutEquation").style.display = 'block';
+
+                                    for (var i = 0; i < eMessageBox.length; i++) {
+                                        eMessageBox[i].style.display = 'none';
+                                    }
+                                }
+
+                                updateChart(generalChart, xArray, yArray, interval, p, conicSection[1]);
+
+                                switch(conicSection[0]) {
+                                    case 11: { 
+                                        document.getElementById("generalGraph").style.display = 'block';
+                                        document.getElementById("plotsConicSection").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextEquation").style.display = 'block';     
+                                        document.getElementById("plotsFiniteField").style.display = 'block';
+                                        document.getElementById("plotsFiniteField2").style.display = 'block';
+                                        document.getElementById("plotsConicSectionCount").style.display = 'block';     
+
+                                        document.getElementById("generalEquationOutputText").innerHTML = "Body paraboly (x, y) v konečnom poli $F_{" + p + "}$:";
+                                        
+                                        for (var i = 0; i < conicSection[1] ; i++) {
+                                            plots = plots + "(" + xArray[i] + ", " + yArray[i] + ")" + "<br>";
+                                        }
+
+					                    document.getElementById("conicSectionGeneralForm").innerHTML = "Všeobecná rovnica paraboly:";
+					                    document.getElementById("conicSectionEquation").innerHTML = "Odvodená rovnica paraboly:";
+                                        document.getElementById("plotsFiniteField").innerHTML = "Počet prvkov konečného poľa $F_ {" + p + "}$: " + p;
+                                        document.getElementById("plotsConicSectionCount").innerHTML = "Počet bodov paraboly v konečnom poli $F_{" + p + "}$: " + conicSection[1];
+                                        document.getElementById("plotsFiniteField2").innerHTML = "Počet prvkov $(x, y)$ v množine $F^2_{" + p + "}$: " + p*p;
+
+                                        document.getElementById("plotsConicSection").innerHTML = plots;
+
+                                        var k = params[0];
+                                        var m = -params[1];
+                                        var n = -params[2];
+
+                                        if(mod(a, p) == 1 && mod(c, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 + x + " + mod(d, p) + "y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 + " + mod(d, p) + "y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 + x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(c, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(c, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 + x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }
+
+                                        if(mod(k, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 = y$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(k, p) == 1 && mod(m, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 = " + mod(k, p) + "(y + " + mod(n, p) + ")$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(k, p) == 1 && mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(m, p) + ")^2 = y$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(m, p) == 0 && mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 = " + mod(k, p) + "y$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(k, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(m, p) + ")^2 = y + " + mod(n, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(m, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 = " + mod(k, p) + "(y + " + mod(n, p) + ")$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(m, p) + ")^2 = " + mod(k, p) + "y$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(m, p) + ")^2 = " + mod(k, p) + "(y + " + mod(n, p) + ")$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }
+
+                                        break;
+                                    }
+                                    
+                                    case 12: {
+                                        document.getElementById("generalGraph").style.display = 'block';
+                                        document.getElementById("plotsConicSection").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextEquation").style.display = 'block';
+                                        document.getElementById("plotsFiniteField").style.display = 'block';
+                                        document.getElementById("plotsFiniteField2").style.display = 'block';
+                                        document.getElementById("plotsConicSectionCount").style.display = 'block';
+
+                                        document.getElementById("generalEquationOutputText").innerHTML = "Body paraboly (x, y) v konečnom poli $F_{" + p + "}$:";
+                                        
+                                        for (var i = 0; i < conicSection[1] ; i++) {
+                                            plots = plots + "(" + xArray[i] + ", " + yArray[i] + ")" + "<br>";
+                                        }
+
+					                    document.getElementById("conicSectionGeneralForm").innerHTML = "Všeobecná rovnica paraboly:";
+					                    document.getElementById("conicSectionEquation").innerHTML = "Odvodená rovnica paraboly:";
+                                        document.getElementById("plotsFiniteField").innerHTML = "Počet prvkov konečného poľa $F_ {" + p + "}$: " + p;
+                                        document.getElementById("plotsConicSectionCount").innerHTML = "Počet bodov paraboly v konečnom poli $F_{" + p + "}$: " + conicSection[1];
+                                        document.getElementById("plotsFiniteField2").innerHTML = "Počet prvkov $(x, y)$ v množine $F^2_{" + p + "}$: " + p*p;
+
+                                        document.getElementById("plotsConicSection").innerHTML = plots;
+
+                                        var k = params[0];
+                                        var m = -params[1];
+                                        var n = -params[2];
+
+                                        if(mod(b, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 + " + mod(c, p) + "x + y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 + " + mod(c, p) + "x = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 + " + mod(c, p) + "x + y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 + " + mod(c, p) + "x + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 + " + mod(c, p) + "x + y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = " + "0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }
+
+                                        if(mod(k, p) == 1 && mod(m, p) == 0 && mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 = x$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(k, p) == 1 && mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 = (x + " + mod(m, p) + ")$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(k, p) == 1 && mod(m, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(n, p) + ")^2 = " + mod(k, p) + "x$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(m, p) == 0 && mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 = " + mod(k, p) + "x$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(k, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(n, p) + ")^2 = x + " + mod(m, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(m, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(n, p) + ")^2 = " + mod(k, p) + "x$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(n, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 = " + mod(k, p) + "(x + " + mod(m, p) + ")$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(n, p) + ")^2 = " + mod(k, p) + "(x + " + mod(m, p) + ")$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }
+                                        
+                                        break;
+                                    }
+                                    
+                                    case 21: {
+                                        document.getElementById("generalGraph").style.display = 'block';
+                                        document.getElementById("plotsConicSection").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextEquation").style.display = 'block';
+                                        document.getElementById("plotsFiniteField").style.display = 'block';
+                                        document.getElementById("plotsFiniteField2").style.display = 'block';
+                                        document.getElementById("plotsConicSectionCount").style.display = 'block';
+                                        
+                                        document.getElementById("generalEquationOutputText").innerHTML = "Body hyperboly (x, y) v konečnom poli $F_{" + p + "}$:";
+                                        
+                                        for (var i = 0; i < conicSection[1]; i++) {
+                                            plots = plots + "(" + xArray[i] + ", " + yArray[i] + ")" + "<br>";
+                                        }
+
+					                    document.getElementById("conicSectionGeneralForm").innerHTML = "Všeobecná rovnica hyperboly:";
+					                    document.getElementById("conicSectionEquation").innerHTML = "Odvodená rovnica hyperboly:";
+                                        document.getElementById("plotsFiniteField").innerHTML = "Počet prvkov konečného poľa $F_ {" + p + "}$: " + p;
+                                        document.getElementById("plotsConicSectionCount").innerHTML = "Počet bodov hyperboly v konečnom poli $F_{" + p + "}$: " + conicSection[1];
+                                        document.getElementById("plotsFiniteField2").innerHTML = "Počet prvkov $(x, y)$ v množine $F^2_{" + p + "}$: " + p*p;
+
+                                        document.getElementById("plotsConicSection").innerHTML = plots;
+
+                                        var aHyp = params[0];
+                                        var bHyp = params[1];
+                                        var mHyp = -params[2];
+                                        var nHyp = -params[3];
+					var uHyp = params[4];
+
+                                        if(mod(a, p) == 1 && mod(-1 * b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p)== 1 && mod(c, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p)== 1 && mod(c, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + x + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p)== 1 && mod(c, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + x + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p)== 1 && mod(c, p) == 0 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(-1 * b, p)== 1 && mod(c, p) == 0 && mod(d, p) == 0) {    
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 +  " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + x  = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 x + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + x + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(c, p) + "x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(c, p) + "x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(c, p) + "x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(c, p) + "x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + x + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + x + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(c, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p)== 1 && mod(c, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(c, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1 && mod(a, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(a, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * b, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {     
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(a, p) + "x^2 - " + mod(-1 * b, p) + "y^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }
+
+                                        if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1 && mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 - y^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(aHyp, p) == 1 && mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 - \\frac{y^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(bHyp, p) == 1 && mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{x^2}{" + mod(aHyp, p) + "^2} - y^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";    
+                                        } else if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1 && mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 - (y + " + mod(nHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(mHyp, p) + ")^2 - y^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(mHyp, p) + ")^2 - (y + " + mod(nHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(aHyp, p) == 1 && mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$x^2 - \\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(aHyp, p) == 1 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(mHyp, p) + ")^2 - \\frac{y^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(bHyp, p) == 1 && mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{x^2}{" + mod(aHyp, p) + "^2} - (y + " + mod(nHyp, p) + ")^2= " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(bHyp, p) == 1 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - y^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{x^2}{" + mod(aHyp, p) + "^2} - \\frac{y^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{x^2}{" + mod(aHyp, p) + "^2} - \\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - \\frac{y^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(aHyp, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(x + " + mod(mHyp, p) + ")^2 - \\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(bHyp, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - (y + " + mod(nHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - \\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }  
+                                    
+                                        break;
+                                    }
+
+                                    case 22: {
+                                        document.getElementById("generalGraph").style.display = 'block';
+                                        document.getElementById("plotsConicSection").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'block';
+                                        document.getElementById("generalEquationOutputTextEquation").style.display = 'block';
+                                        document.getElementById("plotsFiniteField").style.display = 'block';
+                                        document.getElementById("plotsFiniteField2").style.display = 'block';
+                                        document.getElementById("plotsConicSectionCount").style.display = 'block';
+                                        
+                                        document.getElementById("generalEquationOutputText").innerHTML = "Body hyperboly (x, y) v konečnom poli $F_{" + p + "}$:";
+                                        
+                                        for (var i = 0; i < conicSection[1]; i++) {
+                                            plots = plots + "(" + xArray[i] + ", " + yArray[i] + ")" + "<br>";
+                                        }
+
+					                    document.getElementById("conicSectionGeneralForm").innerHTML = "Všeobecná rovnica hyperboly:";
+					                    document.getElementById("conicSectionEquation").innerHTML = "Odvodená rovnica hyperboly:";
+                                        document.getElementById("plotsFiniteField").innerHTML = "Počet prvkov konečného poľa $F_ {" + p + "}$: " + p;
+                                        document.getElementById("plotsConicSectionCount").innerHTML = "Počet bodov hyperboly v konečnom poli $F_{" + p + "}$: " + conicSection[1];
+                                        document.getElementById("plotsFiniteField2").innerHTML = "Počet prvkov $(x, y)$ v množine $F^2_{" + p + "}$: " + p*p;
+
+                                        document.getElementById("plotsConicSection").innerHTML = plots;
+
+                                        var aHyp = params[0];
+                                        var bHyp = params[1];
+                                        var mHyp = -params[2];
+                                        var nHyp = -params[3];
+					var uHyp = params[4];
+
+                                        if(mod(-1 * a, p) == 1 && mod(b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p)== 1 && mod(c, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + x + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p)== 1 && mod(c, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + x + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p)== 1 && mod(c, p) == 0 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(b, p)== 1 && mod(c, p) == 0 && mod(d, p) == 0) {    
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + x  = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + x + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";        
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + x + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(c, p) + "x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(c, p) + "x = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(d, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(c, p) + "x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(d, p) == 0 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(c, p) + "x + y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + x + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 1 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + x + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 0 && mod(d, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1 && mod(c, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p)== 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(c, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(e, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1 && mod(-1 * a, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(-1 * a, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else if(mod(b, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        } else {     
+                                            document.getElementById("generalEquationOutputTextGeneralEquation").innerHTML = "$" + mod(b, p) + "y^2 - " + mod(-1 * a, p) + "x^2 + " + mod(c, p) + "x + " + mod(d, p) + "y + " + mod(e, p) + " = 0$ <span class='markup'>$(mod$ $" + p + ")$<span>";
+                                        }
+
+                                        if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1 && mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 - x^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";  
+                                        } else if(mod(aHyp, p) == 1 && mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 - \\frac{x^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>"; 
+                                        } else if(mod(bHyp, p) == 1 && mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(y^2}{" + mod(aHyp, p) + "^2} - x^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>"; 
+                                        } else if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1 && mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(nHyp, p) + ")^2 - x^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>"; 
+                                        } else if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1 && mod(nHyp, p) == 0) {    
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 - (x + " + mod(mHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(aHyp, p) == 1 && mod(bHyp, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(nHyp, p) + ")^2 - (x + " + mod(mHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(aHyp, p) == 1 && mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(nHyp, p) + ")^2 - \\frac{x^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(aHyp, p) == 1 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$y^2 - \\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(bHyp, p) == 1 && mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - x^2= " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(bHyp, p) == 1 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{y^2}{" + mod(aHyp, p) + "^2} - (x + " + mod(mHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(mHyp, p) == 0 && mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{y^2}{" + mod(aHyp, p) + "^2} - \\frac{x^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(mHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - \\frac{x^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(nHyp, p) == 0) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{y^2}{" + mod(aHyp, p) + "^2} - \\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(aHyp, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$(y + " + mod(nHyp, p) + ")^2 - \\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else if(mod(bHyp, p) == 1) {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(y + " + mod(n, p) + ")^2}{" + mod(aHyp, p) + "^2} - (x + " + mod(mHyp, p) + ")^2 = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";     
+                                        } else {
+                                            document.getElementById("generalEquationOutputTextEquation").innerHTML = "$\\frac{(y + " + mod(nHyp, p) + ")^2}{" + mod(aHyp, p) + "^2} - \\frac{(x + " + mod(mHyp, p) + ")^2}{" + mod(bHyp, p) + "^2} = " + mod(uHyp, p) + "$ <span class='markup'>$(mod$ $" + p + ")$<span>";                
+                                        }
+                                    
+                                        break;
+                                    }
+                                    
+                                    case 3: {
+                                        document.getElementById("generalGraph").style.display = 'none';
+                                        document.getElementById("plotsConicSection").style.display = 'none';
+                                        document.getElementById("plotsFiniteField").style.display = 'none';
+                                        document.getElementById("plotsFiniteField2").style.display = 'none';
+                                        document.getElementById("plotsConicSectionCount").style.display = 'none';
+					                    document.getElementById("conicSectionGeneralForm").style.display = 'none';
+					                    document.getElementById("conicSectionEquation").style.display = 'none';
+
+                                        document.getElementById("generalEquationOutputText").innerHTML = "<br>Výsledná rovnica so zvolenými parametrami je kružnica";
+                                        document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'none';
+                                        document.getElementById("generalEquationOutputTextEquation").style.display = 'none';
+					                    document.getElementById("printoutEquation").style.display = 'none';
+
+                                        break;
+                                    }
+
+                                    case 4: {
+                                        document.getElementById("generalGraph").style.display = 'none';
+                                        document.getElementById("plotsConicSection").style.display = 'none';
+                                        document.getElementById("plotsFiniteField").style.display = 'none';
+                                        document.getElementById("plotsFiniteField2").style.display = 'none';
+                                        document.getElementById("plotsConicSectionCount").style.display = 'none';
+					                    document.getElementById("conicSectionGeneralForm").style.display = 'none';
+					                    document.getElementById("conicSectionEquation").style.display = 'none';
+
+                                        document.getElementById("generalEquationOutputText").innerHTML = "<br>Výsledná rovnica so zvolenými parametrami je elipsa";
+                                        document.getElementById("generalEquationOutputTextGeneralEquation").style.display = 'none';
+                                        document.getElementById("generalEquationOutputTextEquation").style.display = 'none';
+					                    document.getElementById("printoutEquation").style.display = 'none';
+
+                                        break;
+                                    }
+                                }
+                                
+                                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                            }   
+                        </script>
+
+                        <button name='classicButton' type='button' onclick='printConic(params, xArray, yArray, p, a, b, c, d, e);'>Zobraziť</button>
+                    </div>
+
+		            <p id='conicSectionGeneralForm' style='padding-top: 35px; font-weight: bold;'></p>
+                    <p id='generalEquationOutputTextGeneralEquation' style='font-weight: bold;'></p> 
+		            <p id='conicSectionEquation' style='padding-top: 35px; font-weight: bold;'></p>
+                    <p id='generalEquationOutputTextEquation' style='font-weight: bold;'></p>
+
+		            <h1 id='printoutEquation' style='padding-top: 35px;'>Výpis bodov</h1>
+                    
+                    <div class='errorMessage'>
+                        <p id='outputMessage'></p>
+                    </div>
+
+                    <p id='generalEquationOutputText' style='font-weight: bold;'></p> 
+                    <p id='plotsConicSection'></p>
+		            <p id='plotsConicSectionCount' style='padding-top: 35px; font-weight: bold;'></p>
+                    <p id='plotsFiniteField' style='font-weight: bold;'></p>
+                    <p id='plotsFiniteField2' style='font-weight: bold;'></p>
+                </div>
+                <div class='section'>
+                    <div id='generalGraph'>
+                        <h1>Grafické zobrazenie</h1>
+                        <canvas id='generalChart'>
+                            Váš prehliadač nepodporuje HTML tag canvas.
+                        </canvas>
+
+                        <script>
+                            // Chart Initialization
+                            var chartSetting = document.getElementById("generalChart");
+                            chartSetting.width = 700;
+                            chartSetting.height = 500;
+
+                            var ctx = chartSetting.getContext("2d");
+
+                            var xyVal = [];
+
+                            var generalChart = new Chart(ctx, {
+                                type: "scatter",
+                                data: {
+                                    datasets: [{
+                                        pointRadius: 4,
+                                        pointBackgroundColor: "rgb(255, 0, 0)",
+                                        data: xyVal
+                                    }]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    responsive: true,  
+                                    scales: {
+                                        xAxes: [{
+                                            ticks: {
+                                                min: -((p - 1) / 2),
+                                                stepSize: 1,
+                                                max: (p - 1) / 2
+                                            },
+                                            type: 'linear',
+                                            position: 'bottom',
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                min: -((p - 1) / 2),
+                                                stepSize: 1,
+                                                max: (p - 1) / 2
+                                            },
+                                        }]
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <!-- Footer -->
+        <div class='footer'>
+            <div class='container'>
+                <div class='footerContentLeft'>
+                    <h1>Vytvoril</h1>
+                    <a href="https://is.stuba.sk/auth/lide/clovek.pl?id=92320;">Lukáš Patrnčiak</a>
+                </div>
+                <div class='footerContentRight'>
+                    <h1>Bakalárska práca</h1>
+                    <a href="abstract.html">Paraboly a hyperboly nad konečnými poľami</a>
+                </div>
+            </div>    
+        </div>
+    </body>
+</html>
